@@ -4,10 +4,17 @@
 			<th scope="col">#</th>
 			<th scope="col">e-mail</th>
 			<th scope="col">First name</th>
-			<th scope="col">Last name</th>
+			<th scope="col">Status</th>
 			<th scope="col">Created at</th>
-			<th scope="col">Checkbox</th>
-			<th scope="col">Toolbar</th>
+			<th scope="col"><input type="checkbox"></th>
+			<th scope="col">
+				<div class="toolbar-actions">
+					<span><%= fa_icon "trash-o"%></span>
+					<span><%= fa_icon "unlock" %></span>	
+					<span><%= fa_icon "lock" %></span>
+					
+				</div>
+			</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -15,11 +22,20 @@
 			<tr>
 				<td><%= user.id %></td>
 				<td><%= user.email %></td>
-				<td>first name</td>
-				<td>last name</td>
-				<td>created at</td>
+				<td><%= user.first_name %></td>
+				<td><%= user.status %></td>
+				<td><%= user.created_at %></td>
 				<td><input type="Checkbox"></td>
-				<td>block delete</td>
+				<td>
+					<div class="toolbar-actions">
+						<span><%= fa_icon "trash-o"%></span>
+						<% if current_user.blocked? %>
+							<span><%= fa_icon "unlock" %></span>
+						<% else %>
+							<span><%= fa_icon "lock" %></span>
+						<% end %>
+					</div>
+				</td>
 			</tr>
 
 		<% end %>

@@ -1,1 +1,37 @@
 @import "bootstrap/scss/bootstrap";
+@import "font-awesome";
+
+*,*:after,*:before{
+	margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+
+}
+body{
+	height: 100vh;
+	width: 100%;
+
+}
+div.form{
+	width: 100%;
+	height: 100%;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: center;
+	-ms-align-items: center;
+	align-items: center;
+	flex-direction: column;
+}
+.toolbar-actions{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	justify-content: space-around;
+	-ms-align-items: center;
+	align-items: center;
+}
