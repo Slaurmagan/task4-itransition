@@ -1,2 +1,27 @@
-<h1>Public#index</h1>
-<p>Find me in app/views/public/index.html.erb</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">e-mail</th>
+			<th scope="col">First name</th>
+			<th scope="col">Last name</th>
+			<th scope="col">Created at</th>
+			<th scope="col">Checkbox</th>
+			<th scope="col">Toolbar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.id %></td>
+				<td><%= user.email %></td>
+				<td>first name</td>
+				<td>last name</td>
+				<td>created at</td>
+				<td><input type="Checkbox"></td>
+				<td>block delete</td>
+			</tr>
+
+		<% end %>
+	</tbody>
+</table>
