@@ -1,12 +1,12 @@
 class PublicController < ApplicationController
 	before_action :authenticate_user!,only: :index
+	before_action :set_users,only: [:block,:delete]
   def index
   	@users = User.all
   end
 
   def block
-  	users = params[:ids].is_a?(Array) ? User.where("id = ?",params[:ids].join(' or ')) : User.where("id = ? ",params[:ids])
-  	users.each do |user|
+  	@users.each do |user|
   		user.blocked = !user.blocked?
   		user.save
   	end
@@ -14,9 +14,13 @@ class PublicController < ApplicationController
   end
 
   def delete
-  	users = User.where("id = ?",params[:ids].join(' or '))
+  	@users.delete_all
+  	redirect_to root_path
   end
 
   private
 
+  def set_users
+  	@users = params[:ids].is_a?(Array) ? User.where("id = ?",params[:ids].join(' or ')) : User.where("id = ? ",params[:ids])
+  end
 end

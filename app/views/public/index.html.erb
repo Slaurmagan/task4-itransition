@@ -27,7 +27,11 @@
 				<td><input type="Checkbox" data-target="hello.checkbox" data-action="click->hello#check"></td>
 				<td>
 					<div class="toolbar-actions">
-						<span><%= fa_icon "trash-o"%></span>
+						<span>
+							<%= link_to delete_users_path(ids: user.id),data: {confirm: "Are you sure?"} do %>
+								<%= fa_icon "trash-o"%>
+							<% end %>
+						</span>
 						<% if user.blocked? %>
 							<span>
 								<%= link_to block_path(ids: user.id),method: :post do %>
