@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" data-controller="hello">
 	<thead>
 		<tr>
 			<th scope="col">#</th>
@@ -6,26 +6,25 @@
 			<th scope="col">First name</th>
 			<th scope="col">Status</th>
 			<th scope="col">Created at</th>
-			<th scope="col"><input type="checkbox"></th>
+			<th scope="col"><input type="checkbox" data-action="click->hello#check_all"></th>
 			<th scope="col">
 				<div class="toolbar-actions">
 					<span><%= fa_icon "trash-o"%></span>
 					<span><%= fa_icon "unlock" %></span>	
 					<span><%= fa_icon "lock" %></span>
-					
 				</div>
 			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @users.each do |user| %>
-			<tr>
-				<td><%= user.id %></td>
+			<tr data>
+				<td data-target="hello.user_id"><%= user.id %></td>
 				<td><%= user.email %></td>
 				<td><%= user.first_name %></td>
 				<td><%= user.status %></td>
 				<td><%= user.created_at %></td>
-				<td><input type="Checkbox"></td>
+				<td><input type="Checkbox" data-target="hello.checkbox"></td>
 				<td>
 					<div class="toolbar-actions">
 						<span><%= fa_icon "trash-o"%></span>
