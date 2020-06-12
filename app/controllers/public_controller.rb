@@ -21,6 +21,6 @@ class PublicController < ApplicationController
   private
 
   def set_users
-  	@users = params[:ids].is_a?(Array) ? User.where("id = ?",params[:ids].join(' or ')) : User.where("id = ? ",params[:ids])
+  	@users = params[:ids].is_a?(Array) ? User.where(id: params[:ids]) : User.where("id = ? ",params[:ids])
   end
 end

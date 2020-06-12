@@ -1,54 +1,62 @@
-<table class="table" data-controller="hello">
-	<thead>
-		<tr>
-			<th scope="col">#</th>
-			<th scope="col">e-mail</th>
-			<th scope="col">First name</th>
-			<th scope="col">Last sign in</th>
-			<th scope="col">Created at</th>
-			<th scope="col"><input type="checkbox" data-action="click->hello#check_all"></th>
-			<th scope="col">
-				<div class="toolbar-actions">
-					<span><%= fa_icon "trash-o"%></span>
-					<span><%= fa_icon "unlock" %></span>	
-					<span><%= fa_icon "lock" %></span>
-				</div>
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @users.each do |user| %>
-			<tr data-target="hello.userRecord">
-				<td data-target="hello.userid" id="userid"><%= user.id %></td>
-				<td><%= user.email %></td>
-				<td><%= user.first_name %></td>
-				<td><%= user.last_sign_in_at %></td>
-				<td><%= user.created_at %></td>
-				<td><input type="Checkbox" data-target="hello.checkbox" data-action="click->hello#check"></td>
-				<td>
+<%= form_tag block_path,method: :get do %>
+	<table class="table" data-controller="users">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">e-mail</th>
+				<th scope="col">First name</th>
+				<th scope="col">Last sign in</th>
+				<th scope="col">Created at</th>
+				<th scope="col"><input type="checkbox" data-action="click->users#check_all"></th>
+				<th scope="col">
 					<div class="toolbar-actions">
 						<span>
-							<%= link_to delete_users_path(ids: user.id),data: {confirm: "Are you sure?"} do %>
-								<%= fa_icon "trash-o"%>
-							<% end %>
+							<%= submit_tag "delete" %>
+						</span>	
+						<span>
+							<%= submit_tag "block" %>
 						</span>
-						<% if user.blocked? %>
-							<span>
-								<%= link_to block_path(ids: user.id),method: :post do %>
-									<%= fa_icon "unlock" %>
-								<% end %>
-							</span>
-						<% else %>
-							<span>
-								<%= link_to block_path(ids: user.id),method: :post do %>
-									<%= fa_icon "lock" %>
-								<% end %>
-							</span>
-						<% end %>
 					</div>
-				</td>
+				</th>
 			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<tr data-target="users.userRecord">
+					<td data-target="users.userid" id="userid"><%= user.id %></td>
+					<td><%= user.email %></td>
+					<td><%= user.first_name %></td>
+					<td><%= user.last_sign_in_at %></td>
+					<td><%= user.created_at %></td>
+					<td>
+						
+						<input type="checkbox" name="ids[]" id="ids_" value="<%= user.id %>" checked="checked" data-target="users.checkbox">
+					<td>
+						<div class="toolbar-actions">
+							<span>
+								<%= link_to delete_users_path(ids: user.id),data: {confirm: "Are you sure?"} do %>
+									<%= fa_icon "trash-o"%>
+								<% end %>
+							</span>
+							<% if user.blocked? %>
+								<span>
+									<%= link_to block_path(ids: user.id),method: :post do %>
+										<%= fa_icon "unlock" %>
+									<% end %>
+								</span>
+							<% else %>
+								<span>
+									<%= link_to block_path(ids: user.id),method: :post do %>
+										<%= fa_icon "lock" %>
+									<% end %>
+								</span>
+							<% end %>
+						</div>
+					</td>
+				</tr>
 
-		<% end %>
-	</tbody>
-</table>
+			<% end %>
+		</tbody>
+	</table>
+
+<% end %>
