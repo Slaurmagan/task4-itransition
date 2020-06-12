@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: task4_itr_production
   username: task4_itr
   password: <%= ENV['TASK4_ITR_DATABASE_PASSWORD'] %>
