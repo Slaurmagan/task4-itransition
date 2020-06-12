@@ -9,7 +9,7 @@
 # And be sure to use new-style password hashing:
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
-development: &default
+development: 
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -23,7 +23,7 @@ development: &default
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  adapter: mysql2
   database: task4_itr_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -46,7 +46,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
   database: task4_itr_production
   username: task4_itr
   password: <%= ENV['TASK4_ITR_DATABASE_PASSWORD'] %>
