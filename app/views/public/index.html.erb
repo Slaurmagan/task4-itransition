@@ -1,4 +1,4 @@
-<%= form_tag block_path,method: :get do %>
+<%= form_tag block_path,method: :post do %>
 	<table class="table" data-controller="users">
 		<thead>
 			<tr>
@@ -34,19 +34,19 @@
 					<td>
 						<div class="toolbar-actions">
 							<span>
-								<%= link_to delete_users_path(ids: user.id),data: {confirm: "Are you sure?"} do %>
+								<%= link_to delete_users_path(ids: user.id),data: {confirm: "Are you sure?"},method: :post do %>
 									<%= fa_icon "trash-o"%>
 								<% end %>
 							</span>
 							<% if user.blocked? %>
 								<span>
-									<%= link_to block_path(ids: user.id),method: :post do %>
+									<%= link_to block_path(ids: user.id),method: :post,data: {confirm: "Are you sure?"} do %>
 										<%= fa_icon "unlock" %>
 									<% end %>
 								</span>
 							<% else %>
 								<span>
-									<%= link_to block_path(ids: user.id),method: :post do %>
+									<%= link_to block_path(ids: user.id),method: :post,data: {confirm: "Are you sure?"} do %>
 										<%= fa_icon "lock" %>
 									<% end %>
 								</span>
