@@ -10,7 +10,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "checkbox","user_id" ]
+  static targets = [ "checkbox","userid","userRecord" ]
 
   connect() {
     
@@ -23,5 +23,8 @@ export default class extends Controller {
   }
   delete(e){
   	e.preventDefault()
+  }
+  check() {
+  	console.log(this.userRecordTarget)
   }
 }

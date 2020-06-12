@@ -4,7 +4,7 @@
 			<th scope="col">#</th>
 			<th scope="col">e-mail</th>
 			<th scope="col">First name</th>
-			<th scope="col">Status</th>
+			<th scope="col">Last sign in</th>
 			<th scope="col">Created at</th>
 			<th scope="col"><input type="checkbox" data-action="click->hello#check_all"></th>
 			<th scope="col">
@@ -18,20 +18,28 @@
 	</thead>
 	<tbody>
 		<% @users.each do |user| %>
-			<tr data>
-				<td data-target="hello.user_id"><%= user.id %></td>
+			<tr data-target="hello.userRecord">
+				<td data-target="hello.userid" id="userid"><%= user.id %></td>
 				<td><%= user.email %></td>
 				<td><%= user.first_name %></td>
-				<td><%= user.status %></td>
+				<td><%= user.last_sign_in_at %></td>
 				<td><%= user.created_at %></td>
-				<td><input type="Checkbox" data-target="hello.checkbox"></td>
+				<td><input type="Checkbox" data-target="hello.checkbox" data-action="click->hello#check"></td>
 				<td>
 					<div class="toolbar-actions">
 						<span><%= fa_icon "trash-o"%></span>
-						<% if current_user.blocked? %>
-							<span><%= fa_icon "unlock" %></span>
+						<% if user.blocked? %>
+							<span>
+								<%= link_to block_path(ids: user.id),method: :post do %>
+									<%= fa_icon "unlock" %>
+								<% end %>
+							</span>
 						<% else %>
-							<span><%= fa_icon "lock" %></span>
+							<span>
+								<%= link_to block_path(ids: user.id),method: :post do %>
+									<%= fa_icon "lock" %>
+								<% end %>
+							</span>
 						<% end %>
 					</div>
 				</td>
