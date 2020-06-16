@@ -10,12 +10,20 @@
 				<th scope="col"><input type="checkbox" data-action="click->users#check_all"></th>
 				<th scope="col">
 					<div class="toolbar-actions">
-						<span>
-							<%= submit_tag "delete" %>
-						</span>	
-						<span>
-							<%= submit_tag "block" %>
-						</span>
+						<div class ="delete">
+							<span>
+								<%= link_to "#",data: { action: "click->users#delete"} do %>
+									<%= fa_icon "trash-o" %>
+								<% end %>
+								<%= submit_tag "delete",formaction: delete_users_path,class: "submit_btn delete",data: { target: "users.delete" } %> 
+							</span>
+						</div>	
+						<div class="block">
+							<%= link_to "#",data: { action: "click->users#block"} do %>
+								<%= fa_icon "lock" %>
+							<% end %>
+							<%= submit_tag "block",class: "submit_btn block",data: { target: "users.block"} %>
+						</div>
 					</div>
 				</th>
 			</tr>
